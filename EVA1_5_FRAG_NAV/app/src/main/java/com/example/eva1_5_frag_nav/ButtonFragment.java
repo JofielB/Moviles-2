@@ -13,9 +13,16 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 public class ButtonFragment extends Fragment {
-
+    //Modo 1
     MainActivity main;
     Button btn;
+
+    //Modo 2
+    private View.OnClickListener miClick;
+
+    public void setMiClick(View.OnClickListener click){
+        miClick = click;
+    }
 
     public ButtonFragment() {
         // Required empty public constructor
@@ -33,12 +40,18 @@ public class ButtonFragment extends Fragment {
         // Inflate the layout for this fragment
         FrameLayout frameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_button, container, false);
         btn = frameLayout.findViewById(R.id.buttonFrag);
-        btn.setOnClickListener(new View.OnClickListener() {
+
+        //METODO 1 (CLASE)
+        btn.setOnClickListener(miClick);
+
+        //METODO 2 (PROPIO)
+        /*btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 main.replaceFragment();
             }
-        });
+        });*/
+
         return frameLayout;
     }
 

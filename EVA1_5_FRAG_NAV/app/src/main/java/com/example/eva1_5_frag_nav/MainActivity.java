@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,7 +17,15 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         ButtonFragment btnFrag = new ButtonFragment();
+        btnFrag.setMiClick(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                replaceFragment();
+            }
+        });
         fragmentTransaction.replace(R.id.frameLayMain,btnFrag);
+        //Para no destruir los fragmentos anteriores y agregarlos a un stack para efectos de navecagcion
+        fragmentTransaction.addToBackStack("Hola");
         fragmentTransaction.commit();
     }
 
@@ -24,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragTr = getSupportFragmentManager().beginTransaction();
         ColorFragment colorFg = new ColorFragment();
         fragTr.replace(R.id.frameLayMain, colorFg);
+        //Para no destruir los fragmentos anteriores y agregarlos a un stack para efectos de navecagcion
+        fragTr.addToBackStack("Hello");
         fragTr.commit();
     }
 }
