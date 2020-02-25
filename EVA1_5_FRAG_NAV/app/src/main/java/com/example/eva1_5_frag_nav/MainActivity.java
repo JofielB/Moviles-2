@@ -31,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void replaceFragment(){
         FragmentTransaction fragTr = getSupportFragmentManager().beginTransaction();
+        //Animacion
+                                    //Para cuando aparece el fragmento  Cuando desaparece
+        fragTr.setCustomAnimations(R.anim.anim_enter,R.anim.anim_out,R.anim.anim_enter,R.anim.anim_out);
+        //Remplazar el fragmento
         ColorFragment colorFg = new ColorFragment();
         fragTr.replace(R.id.frameLayMain, colorFg);
         //Para no destruir los fragmentos anteriores y agregarlos a un stack para efectos de navecagcion
